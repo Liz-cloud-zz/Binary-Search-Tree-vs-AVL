@@ -8,6 +8,15 @@ public class LSBSTApp {
     public LSBSTApp() {
     }
 
+    /**
+     *Main method reads LoadShedding data from the array named array and inserts thee data into a AVLTree using a Scanner
+     * an ArrayList of opcount is created which stores the maximum number of operation sit takes for the AVLTree to to do the find , the data is then stored in the operationresults2.txt file
+     * the Array List of number of lines of each text file is stored in a text file called Number of lines2.txt
+     * if the array called args is empty  the printAllAreas method is evoked
+     * else the printAreas method is called
+     * @param args
+     * @throws FileNotFoundException
+     */
     public static void main(String[] args) throws FileNotFoundException {
         Scanner file = null;
         Scanner file2 = null;
@@ -66,12 +75,32 @@ public class LSBSTApp {
         }
 
         num_of_lines.close();
+
+        if(args.length==0){
+            printAllAreas(b);
+        }
+        else{
+            printAreas(args[0],args[1],args[2],b);
+        }
     }
+
+    /**
+     *printAllAreas method prints all the LoadShedding text file data stored in the AVLTree
+     * @param x
+     */
 
     public static void printAllAreas(BinarySearchTree<String> x) {
         x.postOrder();
     }
 
+    /**
+     *  printAreas method takes in String parameters as stage, day and startTime as the  key the AVLTree object to search the key provided through
+     * the method returns the areas that meet the search key conditions as String
+     * @param stage
+     * @param day
+     * @param startTime
+     * @param ld
+     */
     public static void printAreas(String stage, String day, String startTime, BinarySearchTree<String> ld) {
         String key = stage + "_" + day + "_" + startTime;
         Boolean found = false;
